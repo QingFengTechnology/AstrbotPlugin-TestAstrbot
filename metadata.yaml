@@ -1,6 +1,6 @@
 name: astrbot_plugin_test_astrbot
 display_name: TestAstrbot
 desc: 用于测试 Astrbot 功能的插件。
-version: v1.0.2
+version: v1.1.0
 author: QingFeng
 repo: https://github.com/QingFengTechnology/AstrbotPlugin-TestAstrbot
