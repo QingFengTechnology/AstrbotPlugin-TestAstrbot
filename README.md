@@ -1,9 +1,3 @@
-# helloworld
+# AstrbotPlugin-TestAstrbot
 
-AstrBot 插件模板
-
-A template plugin for AstrBot plugin feature
-
-# 支持
-
-[帮助文档](https://astrbot.app)
+这是一个用于测试 Astrbot 功能的插件，个人自用。
