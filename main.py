@@ -21,7 +21,7 @@ class TestAstrbot(Star):
     async def send_chain(self, event: AstrMessageEvent):
         """发送消息链，对应 Astrbot 方法`event.chain_result()`。"""
         messageChain = [
-          Comp.At(qq=event.get_sender_id),
+          Comp.At(qq=event.get_sender_id()),
           Comp.Plain("""
           本群已启用清风服关联账号验证服务，您需要与机器人私聊完成关联验证。
           机器人私聊发送 /verify help 命令以获取帮助。
