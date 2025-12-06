@@ -1,6 +1,9 @@
+import asyncio
 import astrbot.api.message_components as Comp
 from astrbot.api.event import filter, AstrMessageEvent
+from astrbot.core.message.message_event_result import MessageChain
 from astrbot.api.star import Context, Star
+from astrbot.api import logger
 
 class TestAstrbot(Star):
     def __init__(self, context: Context):
@@ -33,8 +36,19 @@ class TestAstrbot(Star):
     async def test_result(self, event: AstrMessageEvent):
         """测试 Astrbot 不同事件的处理情况"""
         messageChain = [
-          Comp.Plain("self.context.send_message")
+          Comp.Plain("Comp.Plain")
         ]
-        yield self.context.send_message(event.unified_msg_origin, messageChain)
-        yield event.plain_result("event.plain_result")
-        yield self.context.send_message(event.unified_msg_origin, messageChain)
+        try:
+            umo = event.unified_msg_origin
+            logger.debug(f"umo = {umo}")
+            await self.context.send_message(umo, MessageChain(messageChain))
+            await asyncio.sleep(2)
+            yield event.chain_result(messageChain)
+            await asyncio.sleep(2)
+            yield event.plain_result("event.plain_result")
+            await asyncio.sleep(2)
+            logger.debug("logger.debug")
+            yield event.chain_result(messageChain)
+            logger.debug("logger.debug")
+        except Exception as e:
+            logger.error(f"Error: {e}")
