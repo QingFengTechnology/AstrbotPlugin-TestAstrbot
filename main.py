@@ -29,7 +29,7 @@ class TestAstrbot(Star):
         ]
         yield event.chain_result(messageChain)
 
-    @fillter.command("test_result")
+    @filter.command("test_result")
     async def test_result(self, event: AstrMessageEvent):
         """测试 Astrbot 不同事件的处理情况"""
         yield self.context.send_message("self.context.send_message")
