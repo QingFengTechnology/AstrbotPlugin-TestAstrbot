@@ -28,3 +28,10 @@ class TestAstrbot(Star):
           在完成验证之前，您将不得发言，若长时间未完成验证，您将被移出本群。""")
         ]
         yield event.chain_result(messageChain)
+
+    @fillter.command("test_result")
+    async def test_result(self, event: AstrMessageEvent):
+        """测试 Astrbot 不同事件的处理情况"""
+        yield self.context.send_message("self.context.send_message")
+        yield event.plain_result("event.plain_result")
+        yield self.context.send_message("self.context.send_message")
