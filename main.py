@@ -52,3 +52,6 @@ class TestAstrbot(Star):
             logger.debug("logger.debug")
         except Exception as e:
             logger.error(f"Error: {e}")
+    async def test_return_result(self, event: AstrMessageEvent):
+        """测试 AstrBot 是否支持 `return event.plain_result("")`"""
+        return event.plain_result("return event.plain_result")
