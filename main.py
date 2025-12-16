@@ -42,11 +42,8 @@ class TestAstrbot(Star):
             umo = event.unified_msg_origin
             logger.debug(f"umo = {umo}")
             await self.context.send_message(umo, MessageChain(messageChain))
-            await asyncio.sleep(2)
             yield event.chain_result(messageChain)
-            await asyncio.sleep(2)
             yield event.plain_result("event.plain_result")
-            await asyncio.sleep(2)
             logger.debug("logger.debug")
             yield event.chain_result(messageChain)
             logger.debug("logger.debug")
@@ -57,3 +54,6 @@ class TestAstrbot(Star):
     async def test_return_result(self, event: AstrMessageEvent):
         """测试 AstrBot 是否支持 `return event.plain_result("")`"""
         return event.plain_result("return event.plain_result")
+    
+    async def test_await_result(self, event: AstrMessageEvent):
+        await event.plain_result("event.plain_result")
