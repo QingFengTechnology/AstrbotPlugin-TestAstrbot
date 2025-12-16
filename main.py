@@ -32,29 +32,29 @@ class TestAstrbot(Star):
         ]
         yield event.chain_result(messageChain)
 
-    @filter.command("test_result")
-    async def test_result(self, event: AstrMessageEvent):
-        """测试 Astrbot 不同事件的处理情况"""
-        messageChain = [
-          Comp.Plain("Comp.Plain")
-        ]
-        try:
-            umo = event.unified_msg_origin
-            logger.debug(f"umo = {umo}")
-            await self.context.send_message(umo, MessageChain(messageChain))
-            yield event.chain_result(messageChain)
-            yield event.plain_result("event.plain_result")
-            logger.debug("logger.debug")
-            yield event.chain_result(messageChain)
-            logger.debug("logger.debug")
-        except Exception as e:
-            logger.error(f"Error: {e}")
+    # @filter.command("test_result")
+    # async def test_result(self, event: AstrMessageEvent):
+    #     """测试 Astrbot 不同事件的处理情况"""
+    #     messageChain = [
+    #       Comp.Plain("Comp.Plain")
+    #     ]
+    #     try:
+    #         umo = event.unified_msg_origin
+    #         logger.debug(f"umo = {umo}")
+    #         await self.context.send_message(umo, MessageChain(messageChain))
+    #         yield event.chain_result(messageChain)
+    #         yield event.plain_result("event.plain_result")
+    #         logger.debug("logger.debug")
+    #         yield event.chain_result(messageChain)
+    #         logger.debug("logger.debug")
+    #     except Exception as e:
+    #         logger.error(f"Error: {e}")
 
     @filter.command("test_return_result")
     async def test_return_result(self, event: AstrMessageEvent):
         """测试 AstrBot 是否支持 `return event.plain_result("")`"""
         return event.plain_result("return event.plain_result")
     
-    @filter.command("test_await_result")
+    @filter.command("test_result")
     async def test_await_result(self, event: AstrMessageEvent):
-        await event.plain_result("event.plain_result")
+        event.plain_result(event.plain_result)
