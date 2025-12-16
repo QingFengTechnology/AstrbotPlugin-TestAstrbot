@@ -55,5 +55,6 @@ class TestAstrbot(Star):
         """测试 AstrBot 是否支持 `return event.plain_result("")`"""
         return event.plain_result("return event.plain_result")
     
+    @filter.command("test_await_result")
     async def test_await_result(self, event: AstrMessageEvent):
         await event.plain_result("event.plain_result")
