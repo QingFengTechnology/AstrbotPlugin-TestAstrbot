@@ -57,4 +57,4 @@ class TestAstrbot(Star):
     
     @filter.command("test_result")
     async def test_await_result(self, event: AstrMessageEvent):
-        event.plain_result(event.plain_result)
+        event.plain_result("event.plain_result")
